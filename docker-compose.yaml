@@ -1,0 +1,28 @@
+services:
+  app:
+    build: .
+    container_name: ci-buku-app
+    ports:
+      - "8000:80"
+    volumes:
+      - .:/var/www/html
+    depends_on:
+      - db
+
+  db:
+    image: mysql:5.7
+    container_name: ci-buku-db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: ci_buku
+      MYSQL_USER: user
+      MYSQL_PASSWORD: user
+    ports:
+      - "3309:3306"
+    volumes:
+      - dbdata:/var/lib/mysql
+      - ./database:/docker-entrypoint-initdb.d
+
+volumes:
+  dbdata:
