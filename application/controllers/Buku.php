@@ -19,7 +19,7 @@ class Buku extends CI_Controller
 		$start = $this->input->get('per_page') ?? 0;
 
 		if ($keyword) {
-			$data['buku'] = $this->Buku->searchWithLimit($keyword, $limit, $start);
+			$data['buku'] = $this->Buku->searchWithLimit($limit, $start, $keyword);
 			$total_rows = $this->Buku->countSearch($keyword);
 			$config['base_url'] = site_url('buku?q=' . urlencode($keyword));
 		} else {

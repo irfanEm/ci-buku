@@ -56,6 +56,6 @@ class Buku_model extends CI_Model
 		return $this->db->like('judul', $keyword)
 						->or_like('penulis', $keyword)
 						->or_like('tahun_terbit', $keyword)
-						->count_all_result('books');
+						->count_all_results('books');
 	}
 }
